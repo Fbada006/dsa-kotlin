@@ -25,6 +25,6 @@ fun sortedSquares(array: IntArray): IntArray {
 }
 
 fun main() {
-    val array = intArrayOf(-4,-1,0,3,10)
+    val array = intArrayOf(-4, -1, 0, 3, 10)
     print(sortedSquares(array).contentToString())
 }
