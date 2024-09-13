@@ -2,7 +2,7 @@ package org.example.sort
 
 fun insertionSort(array: IntArray) {
     array.forEachIndexed { idx, element ->
-        var j = idx - 1 // This represents the sorted part, which is invalid at first, ie -1
+        var j = idx - 1
 
         while (j >= 0 && array[j] > element) {
             // Shift the larger elements compared to the current element by 1 position
