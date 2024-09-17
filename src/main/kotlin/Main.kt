@@ -1,36 +1,26 @@
 package org.example
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import org.example.queue.GenerateBinaryNumbers
-import org.example.queue.Queue
 import org.example.tree.BinaryTree
 import java.math.BigInteger
-import java.util.*
 
 fun main() {
-//    val tree = BinaryTree()
-//    tree.createBinaryTree()
-//    tree.preorderTraversal(tree.root)
-//    println()
-//    tree.iterativePreorderTraversal(tree.root)
-//    println()
-//    tree.inorderTraversal(tree.root)
-//    println()
-//    tree.iterativeInorderTraversal(tree.root)
-//    println()
-//    tree.postorderTraversal(tree.root)
-//    println()
-//    tree.iterativePostorderTraversal(tree.root)
-//    println()
-//    tree.levelOrderTraversal(tree.root)
-//    println()
-//    println(tree.findMax(tree.root))
-
-    val arr = IntArray(3)
-    println(arr.contentToString())
+    val tree = BinaryTree()
+    tree.createBinaryTree()
+    tree.preorderTraversal(tree.root)
+    println()
+    tree.iterativePreorderTraversal(tree.root)
+    println()
+    tree.inorderTraversal(tree.root)
+    println()
+    tree.iterativeInorderTraversal(tree.root)
+    println()
+    tree.postorderTraversal(tree.root)
+    println()
+    tree.iterativePostorderTraversal(tree.root)
+    println()
+    tree.levelOrderTraversal(tree.root)
+    println()
+    println(tree.findMax(tree.root))
 }
 
 fun <T, R> List<T>.myFold(initial: R, operation: (acc: R, T) -> R): R {
@@ -67,25 +57,6 @@ fun loop() {
     }
 
     println(data.contentToString())
-}
-
-@JvmInline
-value class Millis(val milliseconds: Int) {}
-
-@JvmInline
-value class Minute(val minutes: Int) {
-    fun toMillis(): Millis = Millis(minutes * 60 * 1000)
-}
-
-@JvmInline
-value class User(val bought: Boolean)
-
-fun method(minutes: Minute) = minutes
-
-suspend fun some() = coroutineScope {
-    async(context = Dispatchers.IO) {
-        delay(1000L)
-    }
 }
 
 private val FIB_CACHE: MutableMap<Int, BigInteger> =
