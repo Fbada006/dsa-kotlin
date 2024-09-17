@@ -25,7 +25,7 @@ class HashTable(capacity: Int) {
         }
 
         size++
-        // move the head back to the start
+        // move the head back to the start in case it traversed above during checking for duplicate keys
         head = buckets[bucketIndex]
         val newNode = HashNode(key, value)
         // Join the nodes by inserting the new node before the current head
