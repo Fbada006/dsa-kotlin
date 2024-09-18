@@ -39,7 +39,19 @@ class HashTable(capacity: Int) {
         return key % buckets.size
     }
 
-    fun get(key: Int): String? {
+    fun get(key: Int?): String? {
+        require(key != null) { "Key cannot be null" }
+        val bucketIndex = getBucketIndex(key)
+        var head = buckets[bucketIndex]
+
+        // Loop through the bucket and find the key's value
+        while (head != null) {
+            if (key == head.key) {
+                return head.value
+            }
+            head = head.next
+        }
+        // Key does not exist
         return null
     }
 
@@ -62,4 +74,6 @@ fun main() {
     table.put(21, "New John")
 
     println(table.getSize()) // Is 2
+
+    println(table.get(21))
 }
