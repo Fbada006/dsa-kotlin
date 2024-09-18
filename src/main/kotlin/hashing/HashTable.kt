@@ -39,8 +39,7 @@ class HashTable(capacity: Int) {
         return key % buckets.size
     }
 
-    fun get(key: Int?): String? {
-        require(key != null) { "Key cannot be null" }
+    fun get(key: Int): String? {
         val bucketIndex = getBucketIndex(key)
         var head = buckets[bucketIndex]
 
@@ -56,7 +55,30 @@ class HashTable(capacity: Int) {
     }
 
     fun remove(key: Int): String? {
-        return null
+        val bucketIndex = getBucketIndex(key)
+        var head = buckets[bucketIndex] // This will keep track of the removed node
+        var previous: HashNode? = null // Since we are removing, we need to track the previous value
+
+        while (head != null) {
+            if (key == head.key) break // key found. No need to continue
+            previous = head
+            head = head.next
+        }
+
+        if (head == null) return null
+        size --
+
+        if (previous != null) {
+            // In this case, the key is not in the first position of the bucket array, so we remove head
+            // from the chain. prev.next = [head is broken here] head.next
+            previous.next = head.next
+        } else {
+            // The key is in the first position so we need to remove the first position of the bucket and replace it
+            // with head.next thus removing head from the chain
+            buckets[bucketIndex] = head.next
+        }
+
+        return head.value
     }
 }
 
@@ -66,14 +88,14 @@ data class HashNode(
     var next: HashNode? = null
 )
 
-
 fun main() {
     val table = HashTable(10)
     table.put(105, "Tom")
     table.put(21, "John")
     table.put(21, "New John")
 
-    println(table.getSize()) // Is 2
-
-    println(table.get(21))
+    println(table.getSize()) // 2
+    println(table.get(21)) // New John
+    println(table.remove(21)) // New John
+    println(table.getSize()) // 1
 }
